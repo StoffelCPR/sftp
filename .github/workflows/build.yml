@@ -33,6 +33,12 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
 
+      - uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: int128/kaniko-action@v1
         with:
           push: false
@@ -62,12 +68,6 @@ jobs:
         uses: atmoz/git-verify-ref@master
         with:
           import-github-users: stofffelcpr
-
-      - uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: int128/kaniko-action@v1
         with:
