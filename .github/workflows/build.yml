@@ -22,6 +22,11 @@ jobs:
         with:
           fetch-depth: 0 # for proper signature verification
           submodules: true # for shunit2
+      - name: set lower case owner name
+        run: |
+          echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+        env:
+          OWNER: '${{ github.repository_owner }}'
 
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
@@ -72,8 +77,8 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:debian
-      #      ghcr.io/${{ github.repository }}:latest
-       #     ghcr.io/${{ github.repository }}:debian
+            ghcr.io/${{ OWNER }}/sftp:latest
+            ghcr.io/${{ OWNER }}/sftp:debian
 
           labels: |
             org.opencontainers.image.source=${{ env.gh_server_url }}/${{ github.repository }}
@@ -95,7 +100,7 @@ jobs:
             ${{ env.IMAGE_NAME }}:alpine
           tags: |
             ${{ env.IMAGE_NAME }}:alpine
-            ghcr.io/${{ github.repository }}:alpine
+            ghcr.io/${{ OWNER }}/sftp:alpine
           labels: |
             org.opencontainers.image.source=${{ env.gh_server_url }}/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
