@@ -77,8 +77,8 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:debian
-            ghcr.io/${{ OWNER }}/sftp:latest
-            ghcr.io/${{ OWNER }}/sftp:debian
+#            ghcr.io/${{ OWNER }}/sftp:latest
+#            ghcr.io/${{ OWNER }}/sftp:debian
 
           labels: |
             org.opencontainers.image.source=${{ env.gh_server_url }}/${{ github.repository }}
@@ -100,7 +100,7 @@ jobs:
             ${{ env.IMAGE_NAME }}:alpine
           tags: |
             ${{ env.IMAGE_NAME }}:alpine
-            ghcr.io/${{ OWNER }}/sftp:alpine
+#            ghcr.io/${{ OWNER }}/sftp:alpine
           labels: |
             org.opencontainers.image.source=${{ env.gh_server_url }}/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
