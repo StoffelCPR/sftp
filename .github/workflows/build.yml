@@ -72,8 +72,8 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:debian
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:debian
+      #      ghcr.io/${{ github.repository }}:latest
+       #     ghcr.io/${{ github.repository }}:debian
 
           labels: |
             org.opencontainers.image.source=${{ env.gh_server_url }}/${{ github.repository }}
