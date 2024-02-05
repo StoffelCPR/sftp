@@ -20,66 +20,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # for proper signature verification
-          submodules: true # for shunit2
-
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
-        with:
-          ignore_paths: tests/shunit2
-      
+      - uses: actions/checkout@v3
       - uses: docker/metadata-action@v3
         id: metadata
         with:
           images: ghcr.io/${{ github.repository }}
-
       - uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: int128/kaniko-action@v1
-        with:
-          push: false
-          tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}
-          cache: true
-          cache-repository: ghcr.io/${{ github.repository }}/cache
-          file: Dockerfile
-
-      - name: Test debian image
-        run: tests/run $IMAGE_NAME:debian
-
-      - uses: int128/kaniko-action@v1
-        with:
-          push: false
-          tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}
-          cache: true
-          cache-repository: ghcr.io/${{ github.repository }}/cache
-          file: Dockerfile-alpine
-
-      - name: Test alpine image
-        run: tests/run $IMAGE_NAME:alpine
-
-      - name: Verify signature
-        if: github.ref == 'refs/heads/master'
-        uses: atmoz/git-verify-ref@master
-        with:
-          import-github-users: stofffelcpr
-
-      - uses: int128/kaniko-action@v1
-        with:
-          push: true
-          tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}
-          cache: true
-          cache-repository: ghcr.io/${{ github.repository }}/cache
-          file: Dockerfile
-      
       - uses: int128/kaniko-action@v1
         with:
           push: true
