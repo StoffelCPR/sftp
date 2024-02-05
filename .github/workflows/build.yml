@@ -8,6 +8,8 @@ on:
       - "*.md"
       - "*.txt"
       - "*.png"
+    tags:
+      - 'v*'
   pull_request:
 
 env:
