@@ -30,7 +30,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/${{ github.repository }}/sftp
+            ghcr.io/stoffelcpr/sftp
             ${{ github.actor }}/${{ github.event.repository.name }}
           tags: |
             # set latest tag for default branch
@@ -42,7 +42,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/${{ github.repository }}/sftp
+            ghcr.io/stoffelcpr/sftp
             ${{ github.actor }}/${{ github.event.repository.name }}
           tags: |
             # set latest tag for default branch
@@ -85,7 +85,7 @@ jobs:
 
           labels: ${{ steps.meta-debian.outputs.labels }}
       - name: Test debian image
-        run: tests/run ghcr.io/${{ github.repository }}:debian
+        run: tests/run ghcr.io/stoffelcpr:debian
 
       # Build docker image single platform for the tests
       - name: Build alpine image
@@ -101,7 +101,7 @@ jobs:
           labels: ${{ steps.meta-alpine.outputs.labels }}
 
       - name: Test alpine image
-        run: tests/run ghcr.io/${{ github.repository }}:alpine
+        run: tests/run ghcr.io/stoffelcpr:alpine
 
       - name: Verify signature
         if: github.ref == 'refs/heads/main'
