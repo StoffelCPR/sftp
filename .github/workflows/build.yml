@@ -25,6 +25,7 @@ jobs:
         with:
           ignore: tests/shunit2
       
+      # Build docker metadata for debian images ( tags and labes )
       - name: Docker metadata
         id: meta-debian
         uses: docker/metadata-action@v5
@@ -37,6 +38,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=raw,value=debian
       
+      # Build docker metadata for alpine images ( tags and labes )
       - name: Docker metadata
         id: meta-alpine
         uses: docker/metadata-action@v5
