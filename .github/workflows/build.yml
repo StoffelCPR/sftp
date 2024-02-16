@@ -85,7 +85,7 @@ jobs:
 
           labels: ${{ steps.meta-debian.outputs.labels }}
       - name: Test debian image
-        run: tests/run ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:debian
+        run: tests/run ghcr.io/stoffelcpr/${{ github.event.repository.name }}:debian
 
       # Build docker image single platform for the tests
       - name: Build alpine image
@@ -101,7 +101,7 @@ jobs:
           labels: ${{ steps.meta-alpine.outputs.labels }}
 
       - name: Test alpine image
-        run: tests/run ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:alpine
+        run: tests/run ghcr.io/stoffelcpr/${{ github.event.repository.name }}:alpine
 
       - name: Verify signature
         if: github.ref == 'refs/heads/main'
