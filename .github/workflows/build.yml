@@ -104,7 +104,7 @@ jobs:
         run: tests/run ghcr.io/stoffelcpr/${{ github.event.repository.name }}:alpine
 
       - name: Verify signature
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         uses: atmoz/git-verify-ref@master
         with:
           import-github-users: StoffelCPR
@@ -112,7 +112,7 @@ jobs:
       # Build & push docker image multi-platform
       # note: the linux/amd64 image is not rebuilt, the cache is still present from the previous steps.
       - name: Build & Push debian image
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -133,7 +133,7 @@ jobs:
 
       # Build & push docker image multi-platform
       - name: Build & Push alpine image
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         uses: docker/build-push-action@v2
         with:
           context: .
