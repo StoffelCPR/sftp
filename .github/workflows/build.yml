@@ -96,7 +96,7 @@ jobs:
           push: false # don't push to registry
           load: true # load the final result in the docker machine. note this does'nt (yet) work with multiple platforms defined.
           cache-from: ${{ steps.meta-alpine.outputs.tags }}
-          tags: ${{ steps.meta-alpine.outputs.lables }}
+          tags: ${{ steps.meta-alpine.outputs.tags }}
  
           labels: ${{ steps.meta-alpine.outputs.labels }}
 
